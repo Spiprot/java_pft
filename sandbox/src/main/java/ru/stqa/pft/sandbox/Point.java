@@ -1,6 +1,7 @@
 package ru.stqa.pft.sandbox;
 
 class Point {
+
     double x;
     double y;
 

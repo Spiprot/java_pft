@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PointTest {
+
     @Test
     public void testArea() {
         Point p1 = new Point(4, 0);
