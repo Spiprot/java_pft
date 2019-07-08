@@ -6,12 +6,12 @@ public class MyFirstProgram {
         hello("user");
         hello("Ayrat");
         Square s = new Square(5);
-        System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
+        System.out.println("РџР»РѕС‰Р°РґСЊ РєРІР°РґСЂР°С‚Р° СЃРѕ СЃС‚РѕСЂРѕРЅРѕР№ " + s.l + " = " + s.area());
         Rectangle r = new Rectangle(4, 6);
-        System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
+        System.out.println("РџР»РѕС‰Р°РґСЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° СЃРѕ СЃС‚РѕСЂРѕРЅР°РјРё " + r.a + " Рё " + r.b + " = " + r.area());
         Point p1 = new Point(3, 0);
         Point p2 = new Point(2, 0);
-        System.out.println("Расстояние между точками p1 и p2 = " + distance(p1, p2));
+        System.out.println("Р Р°СЃСЃРѕСЏС‚РѕРЅРёРµ РјРµР¶РґСѓ С‚РѕС‡РєР°РјРё p1 Рё p2 = " + distance(p1, p2));
     }
 
     public static void hello(String somebody) {
