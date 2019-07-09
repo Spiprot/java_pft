@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import ru.sqta.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests extends TestBase {
+
     @Test
     public void testContactCreation() {
         app.getContactHelper().gotoAddNewContactPage();
