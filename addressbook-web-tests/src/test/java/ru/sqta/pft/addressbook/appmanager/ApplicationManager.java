@@ -18,10 +18,14 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
 
     public void init() {
-        String browser = BrowserType.CHROME;
         if (browser == BrowserType.FIREFOX) {
             driver = new FirefoxDriver();
         } else if (browser == BrowserType.CHROME) {
