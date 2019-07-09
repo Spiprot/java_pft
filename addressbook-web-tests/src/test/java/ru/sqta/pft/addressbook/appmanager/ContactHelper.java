@@ -2,6 +2,7 @@ package ru.sqta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.sqta.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -24,6 +25,10 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
         type(By.name("byear"), contactData.getByear());
+        if (isElementPresent(By.name("new_group"))){
+            new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        }
+
     }
 
     public void selectContact() {
