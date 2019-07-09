@@ -26,7 +26,21 @@ public class ContactHelper extends HelperBase {
         type(By.name("byear"), contactData.getByear());
     }
 
-    public void gotoAddNewContactPage() {
-        click(By.linkText("add new"));
+
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void deleteSelectedContact() {
+        click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]/input"));
+        driver.switchTo().alert().accept();
+    }
+
+    public void initContactModification() {
+        click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
     }
 }
