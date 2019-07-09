@@ -2,13 +2,16 @@ package ru.sqta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
 public class ApplicationManager {
-    protected WebDriver driver;
+    private WebDriver driver;
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
@@ -18,7 +21,15 @@ public class ApplicationManager {
 
 
     public void init() {
-        driver = new ChromeDriver();
+        String browser = BrowserType.CHROME;
+        if (browser == BrowserType.FIREFOX) {
+            driver = new FirefoxDriver();
+        } else if (browser == BrowserType.CHROME) {
+            driver = new ChromeDriver();
+        } else if (browser == BrowserType.IE) {
+            driver = new InternetExplorerDriver();
+        }
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("http://localhost:8080/addressbook/");
         groupHelper = new GroupHelper(driver);
