@@ -34,7 +34,7 @@ public class ApplicationManager {
         }
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("http://localhost/addressbook/");
+        driver.get("http://localhost:8080/addressbook/");
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
         sessionHelper = new SessionHelper(driver);
