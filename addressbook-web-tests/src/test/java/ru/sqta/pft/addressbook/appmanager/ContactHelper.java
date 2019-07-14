@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.sqta.pft.addressbook.model.ContactData;
+import ru.sqta.pft.addressbook.appmanager.NavigationHelper;
 
 public class ContactHelper extends HelperBase {
 
@@ -34,7 +35,18 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact() {
-        click(By.name("selected[]"));
+        if (isElementPresent(By.name("selected[]"))){
+            click(By.name("selected[]"));
+        } else {
+            new NavigationHelper(driver).gotoAddNewContactPage();
+            fillContactInfo(new ContactData("Ayrat", "Mindubaev",null,null,
+                    null,null,"test1",null,null,null,
+                    null,null),true);
+            new ContactHelper(driver).submitContact();
+            new NavigationHelper(driver).returnToHomePage();
+            click(By.name("selected[]"));
+        }
+
     }
 
     public void deleteSelectedContact() {

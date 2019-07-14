@@ -29,7 +29,16 @@ public class GroupHelper extends HelperBase {
     }
 
     public void selectGroup() {
-        click(By.name("selected[]"));
+        if (isElementPresent(By.name("selected[]"))){
+            click(By.name("selected[]"));
+        } else {
+            new NavigationHelper(driver).gotoGroupPage();
+            initGroupCreation();
+            fillGroupForm(new GroupData("Ayrat", "Mindubaev",null));
+            new GroupHelper(driver).submitGroupCreation();
+            new NavigationHelper(driver).returnToGroupPage();
+            click(By.name("selected[]"));
+        }
     }
 
     public void initGroupModification() {
