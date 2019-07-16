@@ -20,6 +20,10 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_footer"), groupData.getFooter());
     }
 
+    public void fillGroupFormdefault() {
+        fillGroupForm(new GroupData("test1", "test2", "test3"));
+    }
+
     public void initGroupCreation() {
         click(By.name("new"));
     }
@@ -29,16 +33,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public void selectGroup() {
-        if (isElementPresent(By.name("selected[]"))){
-            click(By.name("selected[]"));
-        } else {
-            new NavigationHelper(driver).gotoGroupPage();
-            initGroupCreation();
-            fillGroupForm(new GroupData("Ayrat", "Mindubaev",null));
-            new GroupHelper(driver).submitGroupCreation();
-            new NavigationHelper(driver).returnToGroupPage();
-            click(By.name("selected[]"));
-        }
+        click(By.name("selected[]"));
     }
 
     public void initGroupModification() {
