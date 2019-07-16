@@ -18,4 +18,23 @@ public class TestBase {
     public void tearDown() {
         app.stop();
     }
+
+    void groupPrecondition() {
+        if (!app.getGroupHelper().isGroup()) {
+            app.getNavigationHelper().gotoGroupPage();
+            app.getGroupHelper().initGroupCreation();
+            app.getGroupHelper().fillGroupForm();
+            app.getGroupHelper().submitGroupCreation();
+            app.getNavigationHelper().returnToGroupPage();
+        }
+    }
+
+    void contactPrecondition() {
+        if (!app.getContactHelper().isContact()) {
+            app.getNavigationHelper().gotoAddNewContactPage();
+            app.getContactHelper().fillContactInfo();
+            app.getContactHelper().submitContact();
+            app.getNavigationHelper().returnToHomePage();
+        }
+    }
 }

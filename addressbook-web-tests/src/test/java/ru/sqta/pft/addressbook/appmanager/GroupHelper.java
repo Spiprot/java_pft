@@ -20,8 +20,12 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void fillGroupFormdefault() {
+    public void fillGroupForm() {
         fillGroupForm(new GroupData("test1", "test2", "test3"));
+    }
+
+    public boolean isGroup() {
+        return isElementPresent(By.name("selected[]"));
     }
 
     public void initGroupCreation() {

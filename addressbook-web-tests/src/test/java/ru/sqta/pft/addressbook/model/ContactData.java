@@ -15,9 +15,8 @@ public class ContactData {
     private final String bmonth;
     private final String byear;
 
-    public ContactData(String name, String middlename, String lastname, String nickname, String company,
-                       String address, String group, String mobile,
-                       String email, String bday, String bmonth, String byear) {
+    public ContactData(String name, String middlename, String lastname, String nickname, String company, String address,
+                       String group, String mobile, String email, String bday, String bmonth, String byear) {
         this.name = name;
         this.middlename = middlename;
         this.lastname = lastname;

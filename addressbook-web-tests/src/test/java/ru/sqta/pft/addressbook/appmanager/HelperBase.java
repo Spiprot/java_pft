@@ -1,11 +1,10 @@
 package ru.sqta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class HelperBase {
+class HelperBase {
 
     WebDriver driver;
 
@@ -18,8 +17,8 @@ public class HelperBase {
     }
 
     void type(By locator, String text) {
-        click(locator);
         if (text != null) {
+            click(locator);
             String existingText = driver.findElement(locator).getAttribute("value");
             if (!text.equals(existingText)) {
                 driver.findElement(locator).clear();
@@ -28,16 +27,7 @@ public class HelperBase {
         }
     }
 
-    public boolean isAlertPresent() {
-        try {
-            driver.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    public boolean isElementPresent(By by) {
+    boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
             return true;

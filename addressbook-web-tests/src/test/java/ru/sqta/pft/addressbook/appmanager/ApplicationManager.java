@@ -16,9 +16,6 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private SessionHelper sessionHelper;
-    private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
     private String browser;
 
     public ApplicationManager(String browser) {
@@ -37,13 +34,14 @@ public class ApplicationManager {
         driver.get("http://localhost:8080/addressbook/");
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
-        sessionHelper = new SessionHelper(driver);
+        SessionHelper sessionHelper = new SessionHelper(driver);
         contactHelper = new ContactHelper(driver);
         sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
         driver.quit();
+        StringBuffer verificationErrors = new StringBuffer();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);

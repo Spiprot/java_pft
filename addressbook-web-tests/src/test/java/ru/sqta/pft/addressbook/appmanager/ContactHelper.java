@@ -33,9 +33,9 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void fillContactInfodefault() {
-        fillContactInfo(new ContactData("Ayrat", "Mindubaev",
-                "Anvarovich", "Spiprot", "InfoTeCS", "Ufa", "test1", "89373408863",
+    public void fillContactInfo() {
+        fillContactInfo(new ContactData("Ayrat", "Mindubaev", "Anvarovich",
+                "Spiprot", "InfoTeCS", "Ufa", "test1", "89373408863",
                 "spiprot@bk.ru", "2", "February", "1995"), true);
     }
 
@@ -50,6 +50,10 @@ public class ContactHelper extends HelperBase {
 
     public void initContactModification() {
         click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public boolean isContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 
     public void submitContactModification() {
