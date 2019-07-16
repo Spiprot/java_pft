@@ -13,13 +13,13 @@ public class NavigationHelper extends HelperBase {
         if (isElementPresent(By.tagName("h1"))
                 && driver.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {
-                return;
+            return;
         }
         click(By.linkText("groups"));
     }
 
     public void gotoHome() {
-        if (isElementPresent(By.id("maintble"))){
+        if (isElementPresent(By.id("maintble"))) {
             return;
         }
         click(By.linkText("home"));
