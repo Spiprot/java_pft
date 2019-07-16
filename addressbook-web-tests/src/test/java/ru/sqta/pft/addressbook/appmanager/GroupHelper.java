@@ -6,7 +6,7 @@ import ru.sqta.pft.addressbook.model.GroupData;
 
 public class GroupHelper extends HelperBase {
 
-    public GroupHelper(WebDriver driver) {
+    GroupHelper(WebDriver driver) {
         super(driver);
     }
 
@@ -18,6 +18,14 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
+    }
+
+    public void fillGroupForm() {
+        fillGroupForm(new GroupData("test1", "test2", "test3"));
+    }
+
+    public boolean isGroup() {
+        return isElementPresent(By.name("selected[]"));
     }
 
     public void initGroupCreation() {

@@ -7,7 +7,7 @@ import ru.sqta.pft.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+    ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -17,5 +17,24 @@ public class TestBase {
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         app.stop();
+    }
+
+    void groupPrecondition() {
+        if (!app.getGroupHelper().isGroup()) {
+            app.getNavigationHelper().gotoGroupPage();
+            app.getGroupHelper().initGroupCreation();
+            app.getGroupHelper().fillGroupForm();
+            app.getGroupHelper().submitGroupCreation();
+            app.getNavigationHelper().returnToGroupPage();
+        }
+    }
+
+    void contactPrecondition() {
+        if (!app.getContactHelper().isContact()) {
+            app.getNavigationHelper().gotoAddNewContactPage();
+            app.getContactHelper().fillContactInfo();
+            app.getContactHelper().submitContact();
+            app.getNavigationHelper().returnToHomePage();
+        }
     }
 }

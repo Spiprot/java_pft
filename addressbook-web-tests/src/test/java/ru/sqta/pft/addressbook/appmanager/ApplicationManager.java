@@ -11,13 +11,11 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.fail;
 
 public class ApplicationManager {
+
     private WebDriver driver;
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private SessionHelper sessionHelper;
-    private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
     private String browser;
 
     public ApplicationManager(String browser) {
@@ -32,22 +30,17 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
             driver = new InternetExplorerDriver();
         }
-
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://localhost:8080/addressbook/");
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
-        sessionHelper = new SessionHelper(driver);
+        SessionHelper sessionHelper = new SessionHelper(driver);
         contactHelper = new ContactHelper(driver);
         sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
         driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
     }
 
     public GroupHelper getGroupHelper() {

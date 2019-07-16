@@ -3,11 +3,12 @@ package ru.sqta.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.sqta.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper(WebDriver driver) {
+    ContactHelper(WebDriver driver) {
         super(driver);
     }
 
@@ -15,7 +16,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void fillContactInfo(ContactData contactData) {
+    public void fillContactInfo(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getName());
         type(By.name("middlename"), contactData.getMiddlename());
         type(By.name("lastname"), contactData.getLastname());
@@ -25,10 +26,17 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
         type(By.name("byear"), contactData.getByear());
-        if (isElementPresent(By.name("new_group"))){
+        if (creation) {
             new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
+    }
 
+    public void fillContactInfo() {
+        fillContactInfo(new ContactData("Ayrat", "Mindubaev", "Anvarovich",
+                "Spiprot", "InfoTeCS", "Ufa", "test1", "89373408863",
+                "spiprot@bk.ru", "2", "February", "1995"), true);
     }
 
     public void selectContact() {
@@ -42,6 +50,10 @@ public class ContactHelper extends HelperBase {
 
     public void initContactModification() {
         click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public boolean isContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 
     public void submitContactModification() {
