@@ -41,11 +41,6 @@ public class ApplicationManager {
 
     public void stop() {
         driver.quit();
-        StringBuffer verificationErrors = new StringBuffer();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
     }
 
     public GroupHelper getGroupHelper() {
