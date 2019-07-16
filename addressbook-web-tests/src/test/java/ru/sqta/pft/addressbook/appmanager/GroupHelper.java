@@ -6,7 +6,7 @@ import ru.sqta.pft.addressbook.model.GroupData;
 
 public class GroupHelper extends HelperBase {
 
-    public GroupHelper(WebDriver driver) {
+    GroupHelper(WebDriver driver) {
         super(driver);
     }
 

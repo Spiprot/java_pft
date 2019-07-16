@@ -7,17 +7,17 @@ import org.openqa.selenium.WebDriver;
 
 public class HelperBase {
 
-    protected WebDriver driver;
+    WebDriver driver;
 
-    public HelperBase(WebDriver driver) {
+    HelperBase(WebDriver driver) {
         this.driver = driver;
     }
 
-    protected void click(By locator) {
+    void click(By locator) {
         driver.findElement(locator).click();
     }
 
-    protected void type(By locator, String text) {
+    void type(By locator, String text) {
         click(locator);
         if (text != null) {
             String existingText = driver.findElement(locator).getAttribute("value");

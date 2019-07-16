@@ -1,6 +1,7 @@
 package ru.sqta.pft.addressbook.model;
 
 public class ContactData {
+
     private final String name;
     private final String middlename;
     private final String lastname;
@@ -15,7 +16,8 @@ public class ContactData {
     private final String byear;
 
     public ContactData(String name, String middlename, String lastname, String nickname, String company,
-                       String address, String group, String mobile, String email, String bday, String bmonth, String byear) {
+                       String address, String group, String mobile,
+                       String email, String bday, String bmonth, String byear) {
         this.name = name;
         this.middlename = middlename;
         this.lastname = lastname;
