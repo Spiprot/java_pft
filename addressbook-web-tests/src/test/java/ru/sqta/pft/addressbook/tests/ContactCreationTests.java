@@ -1,7 +1,10 @@
 package ru.sqta.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.sqta.pft.addressbook.model.ContactData;
+
+import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
@@ -9,7 +12,7 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreation() {
         groupPrecondition();
         app.getNavigationHelper().gotoHome();
-        //List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.getContactHelper().getContactList();
         app.getNavigationHelper().gotoAddNewContactPage();
         app.getContactHelper().fillContactInfo(new ContactData("Ayrat", "Mindubaev",
                         "Anvarovich", "Spiprot", "InfoTeCS", "Ufa", "test1",
@@ -17,7 +20,7 @@ public class ContactCreationTests extends TestBase {
                 true);
         app.getContactHelper().submitContact();
         app.getNavigationHelper().returnToHomePage();
-        //List<ContactData> after = app.getContactHelper().getContactList();
-        //Assert.assertEquals(after.size(),before.size()+1);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(),before.size()+1);
     }
 }

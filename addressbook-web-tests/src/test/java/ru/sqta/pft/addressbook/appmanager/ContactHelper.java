@@ -2,9 +2,13 @@ package ru.sqta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.sqta.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -58,6 +62,15 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        for (WebElement row : driver.findElements(By.name("entry"))) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            contacts.add(new ContactData(cells.get(1).getText(), cells.get(2).getText()));
+        }
+        return contacts;
     }
 
     //public List<ContactData> getContactList() {

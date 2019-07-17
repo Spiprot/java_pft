@@ -31,6 +31,11 @@ public class ContactData {
         this.byear = byear;
     }
 
+    public ContactData(String name, String lastname) {
+        this(name, null,lastname,null,null,null,null,null,
+                null,null,null,null);
+    }
+
     public String getName() {
         return name;
     }
