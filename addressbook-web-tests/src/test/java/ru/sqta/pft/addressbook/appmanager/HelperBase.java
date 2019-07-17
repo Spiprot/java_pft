@@ -35,4 +35,8 @@ class HelperBase {
             return false;
         }
     }
+
+    public int getElementsCount() {
+        return driver.findElements(By.name("selected[]")).size();
+    }
 }

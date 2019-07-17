@@ -39,8 +39,8 @@ public class ContactHelper extends HelperBase {
                 "spiprot@bk.ru", "2", "February", "1995"), true);
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        driver.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContact() {
@@ -48,8 +48,8 @@ public class ContactHelper extends HelperBase {
         driver.switchTo().alert().accept();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    public void initContactModification(int index) {
+        driver.findElements(By.xpath("//img[@title=\"Edit\"]")).get(index).click();
     }
 
     public boolean isContact() {
@@ -59,4 +59,15 @@ public class ContactHelper extends HelperBase {
     public void submitContactModification() {
         click(By.name("update"));
     }
+
+    //public List<ContactData> getContactList() {
+    // List<ContactData> contacts = new ArrayList<ContactData>();
+    //  List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
+    //  for (WebElement element : elements) {
+    //     String name = element.getText();
+    // GroupData group = new GroupData(name,null,null);
+    // groups.add(group);
+    // }
+    //return groups;
+    // }
 }
