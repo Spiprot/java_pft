@@ -20,8 +20,8 @@ public class TestBase {
     }
 
     void groupPrecondition() {
+        app.getNavigationHelper().gotoGroupPage();
         if (!app.getGroupHelper().isGroup()) {
-            app.getNavigationHelper().gotoGroupPage();
             app.getGroupHelper().initGroupCreation();
             app.getGroupHelper().fillGroupForm();
             app.getGroupHelper().submitGroupCreation();

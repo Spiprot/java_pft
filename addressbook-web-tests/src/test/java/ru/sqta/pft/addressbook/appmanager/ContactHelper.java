@@ -2,9 +2,13 @@ package ru.sqta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.sqta.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -34,13 +38,13 @@ public class ContactHelper extends HelperBase {
     }
 
     public void fillContactInfo() {
-        fillContactInfo(new ContactData("Ayrat", "Mindubaev", "Anvarovich",
+        fillContactInfo(new ContactData(0, "Ayrat", "Mindubaev", "Anvarovich",
                 "Spiprot", "InfoTeCS", "Ufa", "test1", "89373408863",
                 "spiprot@bk.ru", "2", "February", "1995"), true);
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        driver.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContact() {
@@ -48,8 +52,8 @@ public class ContactHelper extends HelperBase {
         driver.switchTo().alert().accept();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    public void initContactModification(int index) {
+        driver.findElements(By.xpath("//img[@title=\"Edit\"]")).get(index).click();
     }
 
     public boolean isContact() {
@@ -58,5 +62,15 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        for (WebElement row : driver.findElements(By.name("entry"))) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            contacts.add(new ContactData(cells.get(0).findElement(By.tagName("input")).getAttribute("value"),
+                    cells.get(2).getText(), cells.get(1).getText()));
+        }
+        return contacts;
     }
 }
