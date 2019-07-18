@@ -38,7 +38,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void fillContactInfo() {
-        fillContactInfo(new ContactData("Ayrat", "Mindubaev", "Anvarovich",
+        fillContactInfo(new ContactData(0, "Ayrat", "Mindubaev", "Anvarovich",
                 "Spiprot", "InfoTeCS", "Ufa", "test1", "89373408863",
                 "spiprot@bk.ru", "2", "February", "1995"), true);
     }
@@ -68,19 +68,9 @@ public class ContactHelper extends HelperBase {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (WebElement row : driver.findElements(By.name("entry"))) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            contacts.add(new ContactData(cells.get(1).getText(), cells.get(2).getText()));
+            contacts.add(new ContactData(cells.get(0).findElement(By.tagName("input")).getAttribute("value"),
+                    cells.get(2).getText(), cells.get(1).getText()));
         }
         return contacts;
     }
-
-    //public List<ContactData> getContactList() {
-    // List<ContactData> contacts = new ArrayList<ContactData>();
-    //  List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
-    //  for (WebElement element : elements) {
-    //     String name = element.getText();
-    // GroupData group = new GroupData(name,null,null);
-    // groups.add(group);
-    // }
-    //return groups;
-    // }
 }
