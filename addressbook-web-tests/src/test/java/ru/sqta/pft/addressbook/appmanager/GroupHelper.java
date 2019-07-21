@@ -25,7 +25,8 @@ public class GroupHelper extends HelperBase {
     }
 
     public void fillGroupForm() {
-        fillGroupForm(new GroupData("test1", "test2", "test3"));
+        fillGroupForm(new GroupData().withName("test1").withHeader("test2").
+                withFooter("test3"));
     }
 
     public boolean isGroup() {
@@ -52,15 +53,39 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public List<GroupData> getGroupList() {
+    public List<GroupData> List() {
         List<GroupData> groups = new ArrayList<GroupData>();
         List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            GroupData group = new GroupData(id, name, null, null);
-            groups.add(group);
+            groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
+    }
+
+    public void returnToGroupPage() {
+        click(By.linkText("group page"));
+    }
+
+    public void create(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public void modify(int index, GroupData group) {
+        selectGroup(index);
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public void delete(int index) {
+        selectGroup(index);
+        deleteSelectedGroups();
+        returnToGroupPage();
     }
 }

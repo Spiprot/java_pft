@@ -29,7 +29,7 @@ public class ApplicationManager {
             driver = new InternetExplorerDriver();
         }
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        driver.get("http://localhost:8080/addressbook/");
+        driver.get("http://localhost:80/addressbook/");
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
         SessionHelper sessionHelper = new SessionHelper(driver);
@@ -41,11 +41,11 @@ public class ApplicationManager {
         driver.quit();
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
